@@ -181,7 +181,18 @@ namespace Proyecto_Carrito.Controllers{
             var carrito = await (_context.Carrito).Where(p => p.IdCarrito == idcarrito).ToListAsync();
             return carrito;
         }
-        
+        [HttpGet("carrito/usuario/{idusuario}")]
+        public async Task<ActionResult<IEnumerable<Carrito>>> GetByIdUsuario(int idusuario)
+        {
+            if (_context.Carrito == null)
+            {
+                return NotFound();
+            }
+            var carrito = await (_context.Carrito).Where(p => p.IdUsuario == idusuario).ToListAsync();
+            return carrito;
+        }
+
+
         [HttpGet("carrito")]
         public async Task<ActionResult<IEnumerable<Carrito>>> GetCarrito()
         {
